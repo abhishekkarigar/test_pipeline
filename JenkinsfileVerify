@@ -1,7 +1,8 @@
 podTemplate(
     nodeSelector: 'disktype=ssd',
     label: 'mypod1',
-    containers: [
+    yaml: readFile('build-pod.yaml')
+    /*containers: [
         containerTemplate(name: 'maven', image: 'maven:3.5.4-jdk-8-slim', command: 'sleep', ttyEnabled: true),
         containerTemplate(name: 'docker', image: 'docker:18.06.1', command: 'sleep', ttyEnabled: true)
     ],
@@ -9,7 +10,7 @@ podTemplate(
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
         hostPathVolume(mountPath: '/home/jenkins/agent', hostPath: '//c/Users/karigar/mounted'),
         hostPathVolume(mountPath: '/root/.m2', hostPath: '//c/Users/karigar/.m2')
-    ]
+    ]*/
 ){
     node('mypod1') {
         stage('Check running containers') {
