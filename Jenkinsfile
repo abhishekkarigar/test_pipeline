@@ -23,7 +23,7 @@ pipeline {
               sh "docker build -t karigar/promo-app:$BUILD_NUMBER ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
                //dockerImage = docker.build "docker.io/karigar/promo-app:" +"$BUILD_NUMBER"
               // dockerImage.push
-              sh "docker login -ukarigar -p'softech@123'"
+              sh "docker login -ukarigar -p''"
               sh "docker push karigar/promo-app:$BUILD_NUMBEr"        // which is just connecting to the host docker deaemon
         }
       }
