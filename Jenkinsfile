@@ -1,6 +1,7 @@
 pipeline {
   environment {
     registryCredential = 'dockerhub_id'
+    dockerImage = ''
   }
   agent {
     kubernetes {
@@ -20,11 +21,8 @@ pipeline {
       steps {
         container('docker') {
           sh "docker build -t karigar/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
-          script{
-                docker.withRegistry('',registryCredential)
-                {
-                  sh "docker push karigar/promo-app:dev"        // which is just connecting to the host docker deaemon
-                }
+          docker.withRegistry('',registryCredential) {
+             sh "docker push karigar/promo-app:dev"        // which is just connecting to the host docker deaemon
           }
         }
       }
