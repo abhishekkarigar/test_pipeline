@@ -1,5 +1,5 @@
 podTemplate(
-    nodeSelector: 'disktype=ssd',
+    //nodeSelector: 'disktype=ssd',
     label: 'mypod1',
     yaml: readFile('build-pod.yaml')
     /*containers: [
