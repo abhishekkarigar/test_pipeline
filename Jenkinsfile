@@ -20,6 +20,10 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {
+          dockerImage = docker.build("karigar/prom-app:prod",".")
+          docker.withRegistry( '', registryCredential ) {
+              dockerImage.push()
+          }
           sh "docker build -t karigar/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
                //dockerImage = docker.build "docker.io/karigar/promo-app:" +"$BUILD_NUMBER"
               // dockerImage.push
