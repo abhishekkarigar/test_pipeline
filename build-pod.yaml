@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    kubernetes.io/hostname=minikube
+    "kubernetes.io/hostname=minikube"
 spec:
   containers:  # list of containers that you want present for your build, you can define a default container in the Jenkinsfile
   - name: maven
