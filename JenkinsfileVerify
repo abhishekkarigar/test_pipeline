@@ -2,8 +2,8 @@ podTemplate(
     nodeSelector: 'disktype=ssd',
     label: 'mypod1',
     containers: [
-        containerTemplate(name: 'maven', image: 'maven:3.5.4-jdk-8-slim', command: 'cat', ttyEnabled: true),
-        containerTemplate(name: 'docker', image: 'docker:18.06.1', command: 'cat', ttypEnabled: true)
+        containerTemplate(name: 'maven', image: 'maven:3.5.4-jdk-8-slim', command: 'tail-f /dev/null', ttyEnabled: true),
+        containerTemplate(name: 'docker', image: 'docker:18.06.1', command: 'tail-f /dev/null', ttypEnabled: true)
     ],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
