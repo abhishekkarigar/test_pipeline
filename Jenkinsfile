@@ -20,15 +20,13 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {
-          dockerImage = docker.build("karigar/prom-app:prod",".")
-          docker.withRegistry( '', registryCredential ) {
-              dockerImage.push()
-          }
-          sh "docker build -t karigar/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
+          withDockerRegistry([credentialsId: "${registryCredential}", url: ""]){
+            sh "docker build -t karigar/promo-app:dev ."  // when we run docker in this step, we're running it via a shell on the docker build-pod container, 
                //dockerImage = docker.build "docker.io/karigar/promo-app:" +"$BUILD_NUMBER"
               // dockerImage.push
-          sh "docker login -ukarigar -p'softech@123'"
-          sh "docker push karigar/promo-app:dev"        // which is just connecting to the host docker deaemon
+            //sh "docker login -ukarigar -p'softech@123'"
+            sh "docker push karigar/promo-app:dev"        // which is just connecting to the host docker deaemon
+          }
         }
       }
     }
