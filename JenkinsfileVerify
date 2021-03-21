@@ -5,7 +5,7 @@ podTemplate(
     podRetention: never(),
     containers: [
         containerTemplate(name: 'jnlp', image: 'jenkins/inbound-agent:4.3-4', args: '${computer.jnlpmac} ${computer.name}'),
-        containerTemplate(name: 'maven', image: 'maven:3.5.4-jdk-8-slim', command: 'cat', ttyEnabled: true),
+        containerTemplate(name: 'maven', image: 'maven:3.5.4-jdk-8-slim', command: 'cat', ttyEnabled: true, workingDir: '/home/jenkins'),
         containerTemplate(name: 'docker', image: 'docker:18.06.1', command: 'cat', ttyEnabled: true)
     ],
     volumes: [
