@@ -32,8 +32,14 @@ podTemplate(
                 sh 'hostname'
                 sh 'hostname -i'
                 //sh 'docker ps'
-                withCredentials([string(credentialsId: 'dockerhub_id', variable: 'docker-hub')]) {
+                /*withCredentials([string(credentialsId: 'dockerhub_id', variable: 'docker-hub')]) {
                   sh "docker login -u karigar -p ${docker-hub}"
+                }*/
+                
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'PWD', usernameVariable: 'USR')]){
+                    sh "docker login -u ${USR} -p ${PWD}"
+                    sh "docker build -t karigar/promo-app:$BUILD_NUMBER ."
+                    sh "docker push karigar/promo-app:$BUILD_NUMBER"
                 }
             }
         }
