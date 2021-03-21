@@ -25,7 +25,7 @@ podTemplate(
 
         stage('Build') {
             container('jnlp') {
-               sh "mvn clean package"   
+               sh 'mvn clean package'
             }
         }   
     }
