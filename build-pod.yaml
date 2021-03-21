@@ -19,9 +19,14 @@ spec:
     volumeMounts:
       - name: docker
         mountPath: /var/run/docker.sock # We use the k8s host docker engine
+      - name: maven
+        mountPath: /root/.m2
   nodeSelector:
     disktype: ssd
   volumes:
     - name: docker
       hostPath:
         path: /var/run/docker.sock
+    - name: maven
+      hostPath:
+        path: //c/Users/karigar/.m2
