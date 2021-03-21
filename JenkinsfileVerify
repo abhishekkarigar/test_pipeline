@@ -15,14 +15,7 @@ podTemplate(
     ])
     {
     node('mypod1') {
-        stage('Check running containers') {
-            container('docker') {
-                sh 'hostname'
-                sh 'hostname -i'
-                //sh 'docker ps'
-            }
-        }
-        
+    
         stage('Checkout') {
                 checkout scm
         }
@@ -32,6 +25,18 @@ podTemplate(
                     sh 'ls -ltr'
                     sh 'mvn clean install'
                 }
-         }   
+        }
+        
+        stage('Check running containers') {
+            container('docker') {
+                sh 'hostname'
+                sh 'hostname -i'
+                //sh 'docker ps'
+                docker.withRegistry('','dockerhub_id'){
+                    sh "docker build -t karigar/promo-app:$BUILD_NUMBER ."
+                    sh "docker push karigar/promo-app:$BUILD_NUMBER"
+                }
+            }
+        }
     }
 }
