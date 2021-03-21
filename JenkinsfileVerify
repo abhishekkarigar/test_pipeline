@@ -17,14 +17,14 @@ podTemplate(
     node('mypod1') {
     
         stage('Checkout') {
-                checkout scm
+            checkout scm
         }
         
         stage('Build') {
-                container('maven') {
-                    sh 'ls -ltr'
-                    sh 'mvn clean install'
-                }
+            container('maven') {
+                sh 'ls -ltr'
+                sh 'mvn clean package'
+            }
         }
         
         stage('Check running containers') {
