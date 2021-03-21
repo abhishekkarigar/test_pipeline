@@ -22,7 +22,11 @@ podTemplate(
                 //sh 'docker ps'
             }
         }
-
+        
+        stage('Checkout') {
+                checkout scm
+        }
+        
         stage('Build') {
                 container('maven') {
                     sh 'ls -ltr'
