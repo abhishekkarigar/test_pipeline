@@ -25,6 +25,7 @@ podTemplate(
 
         stage('Build') {
                 container('maven') {
+                    sh 'ls -ltr'
                     sh 'mvn clean install'
                 }
          }   
