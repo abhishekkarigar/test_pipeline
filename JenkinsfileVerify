@@ -19,14 +19,14 @@ podTemplate(
             container('docker') {
                 sh 'hostname'
                 sh 'hostname -i'
-                sh 'docker ps'
+                //sh 'docker ps'
             }
         }
 
         stage('Build') {
-            container('maven') {
-               sh 'mvn clean package'
-            }
-        }   
+                container('maven') {
+                    sh 'mvn clean install'
+                }
+         }   
     }
 }
