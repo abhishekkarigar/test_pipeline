@@ -25,7 +25,9 @@ podTemplate(
 
         stage('Build') {
             container('maven') {
-                sh "mvn clean package"   
+                dir('test_pipeline/') {
+                    sh "mvn clean package"   
+                }
             }
         }   
     }
