@@ -1,4 +1,4 @@
-library 'jenkins-shared-library'
+@Library("jenkins-shared-library@master") _
 
 pipeline {
   environment {
@@ -17,7 +17,7 @@ pipeline {
     
     stage('Build') {
       steps {  // no container directive is needed as the maven container is the default
-        sh "mvn clean package"   
+        //sh "mvn clean package"   
       }
     }
 
