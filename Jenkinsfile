@@ -24,7 +24,9 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {
-          dockerCredentials
+          script {
+            dockerCredentials
+          }
           /*withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'PWD', usernameVariable: 'USR' )]) {
             sh "docker login -u ${USR} -p ${PWD}"
             sh "docker build -t karigar/my-app:$BUILD_NUMBER ."
