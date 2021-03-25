@@ -26,6 +26,8 @@ pipeline {
         container('docker') {
           script {
             dockerCredentials
+            sh "docker build -t karigar/my-app:$BUILD_NUMER ."
+            sh "docker push karigar/my-app:$BUILD_NUMER"
           }
           /*withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'PWD', usernameVariable: 'USR' )]) {
             sh "docker login -u ${USR} -p ${PWD}"
