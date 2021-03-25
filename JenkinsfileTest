@@ -14,12 +14,16 @@ pipeline {
     }
   }
   stages {
-
+    stage('build') {
+      steps {
+        sh "mvn clean package"
+    }
+    
     stage('Build Docker Image') {
       steps {
         container('docker') {
           //example1 "hi"
-          dockerCredentials "checking", "99"
+          dockerCredentials "mytest-app"
         }
       }
     }
