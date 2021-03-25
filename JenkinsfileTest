@@ -18,8 +18,8 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {
-          example1 "hi"
-          dockerCredentials "checking" "99"
+          //example1 "hi"
+          dockerCredentials "checking", "99"
         }
       }
     }
