@@ -1,4 +1,4 @@
-@Library("jenkins-shared-library@master") _
+library 'jenkins-shared-library'
 
 pipeline {
   environment {
