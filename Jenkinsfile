@@ -24,19 +24,11 @@ pipeline {
     stage('Build Docker Image') {
       steps {
         container('docker') {
-          script {
-            dockerCredentials
-            sh "docker build -t karigar/my-app:$BUILD_NUMBER ."
-            sh "docker push karigar/my-app:$BUILD_NUMBER"
-          }
-          /*withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'PWD', usernameVariable: 'USR' )]) {
+          withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'PWD', usernameVariable: 'USR' )]) {
             sh "docker login -u ${USR} -p ${PWD}"
             sh "docker build -t karigar/my-app:$BUILD_NUMBER ."
             sh "docker push karigar/my-app:$BUILD_NUMBER"
-          }*/
-         // sh "docker build -t karigar/promo-app:$BUILD_NUMBER ."
-         // sh "docker login -ukarigar -p''"
-         // sh "docker push karigar/promo-app:$BUILD_NUMBER"
+          }
         }
       }
     }
